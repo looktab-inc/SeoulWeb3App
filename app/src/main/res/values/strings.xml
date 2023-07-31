@@ -1,3 +1,5 @@
 <resources>
 	<string name="app_name">EchoNupy</string>
+	<string name="nupy">nupy</string>
+	<string name="login_with_phantom">login_with_phantom</string>
 </resources>
