@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="com.looktab.echonupy.feature.MainViewModel" />
+
+		<import type="com.looktab.echonupy.feature.MainViewModel.ViewFlow" />
+	</data>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fillViewport="true">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/gray200"
+			android:orientation="vertical"
+			tools:context=".feature.nft.NftDetailsActivity">
+
+			<FrameLayout
+				android:id="@+id/iv_nft"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent">
+
+				<ImageView
+					android:id="@+id/nftImage"
+					imageUrl="@{viewModel.detailNFT.image}"
+					android:layout_width="match_parent"
+					android:layout_height="400dp"
+					android:background="@color/gray200"
+					android:scaleType="centerCrop" />
+
+				<ImageView
+					android:id="@+id/btnBack"
+					android:layout_width="40dp"
+					android:layout_height="40dp"
+					android:layout_margin="8dp"
+					android:src="@drawable/ic_back" />
+			</FrameLayout>
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				android:layout_marginTop="330dp"
+				android:orientation="vertical"
+				android:paddingHorizontal="20dp"
+				android:paddingVertical="32dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent">
+
+				<TextView
+					android:id="@+id/nftName"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@{viewModel.detailNFT.name}"
+					android:textColor="@color/white"
+					android:textSize="28dp"
+					android:textStyle="bold"
+					tools:text="Test" />
+
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="start"
+					android:layout_marginTop="12dp"
+					android:text="2022.03.23 - 2022.03.28"
+					android:textColor="@color/white"
+					android:textSize="16dp" />
+
+
+				<View
+					android:layout_width="match_parent"
+					android:layout_height="130dp" />
+			</LinearLayout>
+
+			<androidx.appcompat.widget.LinearLayoutCompat
+				android:layout_width="match_parent"
+				android:layout_height="60dp"
+				android:orientation="horizontal"
+				android:paddingHorizontal="24dp"
+				app:layout_constraintBottom_toBottomOf="parent">
+
+				<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/btnPay"
+					style="@style/Typography.SemiBold"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:background="@drawable/box_r100_25"
+					android:drawablePadding="6dp"
+					android:gravity="center"
+					android:paddingHorizontal="22dp"
+					android:text="참여하기"
+					android:textColor="@color/white"
+					android:textSize="18dp" />
+			</androidx.appcompat.widget.LinearLayoutCompat>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</ScrollView>
+</layout>
