@@ -42,10 +42,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun initViews() {
         super.initViews()
         binding.viewModel = viewModel
-        addFragment(progressFragment)
         viewModel.getNft()
 
-//        addOutFragment(PhantomLoginFragment.newInstance())
+        addOutFragment(PhantomLoginFragment.newInstance())
 
         permissionRequest()
         getMylocation()

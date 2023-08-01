@@ -33,7 +33,7 @@ class PhantomLoginFragment :
     private val phantom by lazy {
         PhantomDeepLink(
             _urlSchema = "nupy",
-            _appUrl = URL("https://tinji-admin.vercel.app"),
+            _appUrl = URL("https://seoul-web3-admin.vercel.app"),
             _publicKey = keyPair.publicKey,
             _secretKey = keyPair.secretKey,
             _cluster = Network.devnet
