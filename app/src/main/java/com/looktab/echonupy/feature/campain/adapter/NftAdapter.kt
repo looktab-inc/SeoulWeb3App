@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.looktab.echonupy.R
 import com.looktab.echonupy.databinding.ItemNftRowBinding
-import com.looktab.echonupy.feature.campain.model.NftRow
+import com.looktab.echonupy.feature.campain.model.Campaign
 
-class NftAdapter : ListAdapter<NftRow, NftAdapter.HistoryCardViewHolder>
+class NftAdapter : ListAdapter<Campaign, NftAdapter.HistoryCardViewHolder>
     (NftCardComparator) {
 
 
@@ -32,12 +32,10 @@ class NftAdapter : ListAdapter<NftRow, NftAdapter.HistoryCardViewHolder>
             DataBindingUtil.bind(itemView)
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        fun bind(item: NftRow) {
+        fun bind(item: Campaign) {
             binding?.let {
                 binding.name = item.name
-                binding.image = item.image
-                binding.status = true
-                binding.statusString = item.status
+                binding.image = item.metadataJson.image
                 binding.layoutBastItem.setOnClickListener {
                     mListener?.onItemClick(item)
                 }
@@ -47,7 +45,7 @@ class NftAdapter : ListAdapter<NftRow, NftAdapter.HistoryCardViewHolder>
     }
 
     interface OnItemClickListener {
-        fun onItemClick(id: NftRow)
+        fun onItemClick(id: Campaign)
     }
 
     private var mListener: OnItemClickListener? = null
@@ -57,17 +55,17 @@ class NftAdapter : ListAdapter<NftRow, NftAdapter.HistoryCardViewHolder>
     }
 }
 
-object NftCardComparator : DiffUtil.ItemCallback<NftRow>() {
+object NftCardComparator : DiffUtil.ItemCallback<Campaign>() {
     override fun areItemsTheSame(
-        oldItem: NftRow,
-        newItem: NftRow
+        oldItem: Campaign,
+        newItem: Campaign
     ): Boolean {
-        return oldItem.nftAddress == newItem.nftAddress
+        return oldItem.uri == newItem.uri
     }
 
     override fun areContentsTheSame(
-        oldItem: NftRow,
-        newItem: NftRow
+        oldItem: Campaign,
+        newItem: Campaign
     ): Boolean {
         return oldItem == newItem
     }

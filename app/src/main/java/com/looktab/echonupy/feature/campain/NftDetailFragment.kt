@@ -25,6 +25,9 @@ class NftDetailFragment : BaseFragment<FragmentNftDetailsBinding>(
         binding.btnBack.setOnClickListener {
             closeFragment()
         }
+        binding.btnComplete.setOnClickListener {
+            closeFragment()
+        }
     }
 
     override fun initObserves() {
