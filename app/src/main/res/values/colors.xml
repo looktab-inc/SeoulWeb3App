@@ -10,13 +10,18 @@
 	<color name="black25">#40000000</color>
 	<color name="black40">#66000000</color>
 
-	<color name="gray200">#D2D8E4</color>
+	<color name="bg">#272B2F</color>
+	<color name="brand500">#1BB76C</color>
+
+	<color name="gray100">#F4F4F5</color>
+	<color name="gray200">#E4E4E7</color>
 	<color name="gray300">#9CA3B3</color>
-	<color name="gray500">#767C8B</color>
+	<color name="gray400">#A1A1AA</color>
+	<color name="gray500">#71717A</color>
 	<color name="gray600">#41444E</color>
 	<color name="gray700">#292C32</color>
-	<color name="gray800">#1E2025</color>
-	<color name="gray900">#191A1E</color>
+	<color name="gray800">#27272A</color>
+	<color name="gray900">#18181B</color>
 
 	<color name="white">#FFFFFFFF</color>
 	<color name="white80">#CCFFFFFF</color>
