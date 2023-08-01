@@ -13,69 +13,85 @@ import androidx.lifecycle.ViewModelProvider
 import com.looktab.echonupy.R
 import com.looktab.echonupy.Util
 import com.looktab.echonupy.base.BaseActivity
+import com.looktab.echonupy.data.injection.Injection
 import com.looktab.echonupy.databinding.ActivityMainBinding
 import com.looktab.echonupy.feature.campain.NftDetailFragment
 import com.looktab.echonupy.feature.campain.NftFragment
 import com.looktab.echonupy.feature.login.PhantomLoginFragment
+import com.looktab.echonupy.feature.plantnft.PlantNftFragment
+import com.looktab.echonupy.feature.progressroom.ProgressFragment
+import com.looktab.echonupy.feature.web.WebFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val viewModel by lazy {
         ViewModelProvider(
             viewModelStore, MainViewModelFactory(
+                Injection.provideRemoteNftSource()
             )
         )[MainViewModel::class.java]
     }
 
-    var nft = NftFragment.newInstance()
+    var progressFragment = ProgressFragment.newInstance()
+    var plantNftFragment = PlantNftFragment.newInstance()
+    var loginFragment = PhantomLoginFragment.newInstance()
+    var nftList = NftFragment.newInstance()
 
     private lateinit var locationManager: LocationManager
 
     override fun initViews() {
         super.initViews()
         binding.viewModel = viewModel
-        addOutFragment(PhantomLoginFragment.newInstance())
-        binding.btnNft.isActivated = true
+        addFragment(progressFragment)
+        viewModel.getNft()
+
+//        addOutFragment(PhantomLoginFragment.newInstance())
 
         permissionRequest()
         getMylocation()
+
+        binding.btnJoinCampaign.setOnClickListener {
+            viewModel.setViewFlow(MainViewModel.ViewFlow.NftCampaign)
+        }
+        binding.btnNftList.setOnClickListener {
+            viewModel.setViewFlow(MainViewModel.ViewFlow.PlantLft)
+        }
     }
 
     override fun initObserves() {
         super.initObserves()
         viewModel.flow.observe(this, Observer {
             Log.e("flow", it.name)
-            binding.btnAirdrop.isActivated = false
-            binding.btnNft.isActivated = false
-            binding.btnWallet.isActivated = false
-            binding.btnMypage.isActivated = false
-            when (it) {
-                MainViewModel.ViewFlow.NFT_Campain -> {
-                    binding.btnNft.isActivated = true
-                    changePage(nft)
-                    viewModel.getNft()
-                }
 
+            when (it) {
                 MainViewModel.ViewFlow.NftDetail -> {
                     addOutFragment(NftDetailFragment.newInstance())
                 }
 
-                MainViewModel.ViewFlow.Login -> {
+                MainViewModel.ViewFlow.NftCampaign -> {
+                    addOutFragment(nftList)
+                }
 
+                MainViewModel.ViewFlow.Main -> {
+                    addFragment(progressFragment)
+                }
+
+                MainViewModel.ViewFlow.PlantLft -> {
+                    addOutFragment(plantNftFragment)
+                }
+
+                MainViewModel.ViewFlow.Chat -> {
+                    addOutFragment(WebFragment.newInstance())
+                }
+
+                MainViewModel.ViewFlow.UpPoint -> {
+                    binding.tvToday.text = "오늘 모은 탄소배출량 .. 100 CO2"
+                    binding.tvTotal.text = "Total CO2 1300"
                 }
 
                 else -> {}
             }
         })
-    }
-
-    private fun changePage(fragment: Fragment) {
-        if (!fragment.isAdded) {
-            addFragment(fragment)
-            changeShowFragment(fragment)
-        } else {
-            changeHideFragment(nft)
-        }
     }
 
     private fun addOutFragment(fragment: Fragment) {
@@ -87,18 +103,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             add(R.id.fragment_container, fragment)
-        }.commit()
-    }
-
-    private fun changeHideFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            hide(fragment)
-        }.commit()
-    }
-
-    private fun changeShowFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            show(fragment)
         }.commit()
     }
 

@@ -13,14 +13,6 @@
 			name="image"
 			type="String" />
 
-		<variable
-			name="status"
-			type="boolean" />
-
-		<variable
-			name="statusString"
-			type="String" />
-
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -69,26 +61,5 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent" />
 
-		<androidx.appcompat.widget.LinearLayoutCompat
-			android:id="@+id/layout_status"
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:background="@color/black40"
-			android:visibility="gone"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent">
-
-			<TextView
-				android:id="@+id/tv_status"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:gravity="center"
-				android:text="@{statusString}"
-				android:textAppearance="@style/Typography.SemiBold"
-				android:textColor="@color/white"
-				android:textSize="18dp" />
-		</androidx.appcompat.widget.LinearLayoutCompat>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

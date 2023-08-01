@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/layoutBastItem"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="9dp">
+
+		<LinearLayout
+			android:id="@+id/gridImg"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:padding="1dp"
+			app:layout_constraintDimensionRatio="10:17"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
+			<com.looktab.echonupy.customview.PlantRoundImageView
+				android:id="@+id/plantImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:adjustViewBounds="true"
+				android:scaleType="centerCrop"
+				tools:srcCompat="@tools:sample/avatars" />
+		</LinearLayout>
+
+		<ImageView
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:background="@drawable/gridient"
+			app:layout_constraintBottom_toBottomOf="@id/gridImg"
+			app:layout_constraintEnd_toEndOf="@id/gridImg"
+			app:layout_constraintStart_toStartOf="@id/gridImg"
+			app:layout_constraintTop_toTopOf="@id/gridImg" />
+
+		<ImageView
+			android:id="@+id/btnGrow"
+			android:layout_width="44dp"
+			android:layout_height="wrap_content"
+			android:layout_margin="20dp"
+			android:src="@drawable/ic_grow"
+			app:layout_constraintBottom_toBottomOf="@id/gridImg"
+			app:layout_constraintEnd_toEndOf="@id/gridImg" />
+
+		<androidx.appcompat.widget.LinearLayoutCompat
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="20dp"
+			android:orientation="vertical"
+			app:layout_constraintBottom_toBottomOf="@id/gridImg"
+			app:layout_constraintStart_toStartOf="@id/gridImg">
+
+			<TextView
+				android:id="@+id/name"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:textAppearance="@style/Typography.SemiBold"
+				android:textColor="@color/white"
+				android:textSize="22dp" />
+
+			<TextView
+				android:id="@+id/description"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:gravity="center"
+				android:textAppearance="@style/Typography.Medium"
+				android:textColor="@color/white"
+				android:textSize="12dp" />
+		</androidx.appcompat.widget.LinearLayoutCompat>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
